@@ -9,9 +9,11 @@
         $data = $_POST['data'];//for your text data
 
         if (file_exists($file)) {
+            $co = fopen($file, "r");//for resd
+            $content = fread($co, filesize($file));
             echo "<script>alert('Your file is already exits.')</script>";
         } else {
-            $fo = fopen($file, "w");
+            $fo = fopen($file, "w");//for write
             fwrite($fo, $data);
             echo "<script>alert('Your data is save.')</script>";
         }
@@ -37,7 +39,7 @@
         </tr>
         <tr>
             <td>Enter Your Data</td>
-            <td><textarea name="data" id="" cols="30" rows="10"></textarea></td>
+            <td><textarea name="data" id="" cols="30" rows="10"><?=$content;?></textarea></td>
         </tr>
         <tr>
             <td colspan="2" align="center">
